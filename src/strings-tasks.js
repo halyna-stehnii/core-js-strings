@@ -501,8 +501,82 @@ function extractEmails(str) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const upper = [
+    'A',
+    'B',
+    'C',
+    'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'Q',
+    'R',
+    'S',
+    'T',
+    'U',
+    'V',
+    'W',
+    'X',
+    'Y',
+    'Z',
+  ];
+
+  const lower = [
+    'a',
+    'b',
+    'c',
+    'd',
+    'e',
+    'f',
+    'g',
+    'h',
+    'i',
+    'j',
+    'k',
+    'l',
+    'm',
+    'n',
+    'o',
+    'p',
+    'q',
+    'r',
+    's',
+    't',
+    'u',
+    'v',
+    'w',
+    'x',
+    'y',
+    'z',
+  ];
+
+  const strArray = str.split('');
+
+  const encoded = strArray.map((char) => {
+    if (lower.includes(char)) {
+      return lower.indexOf(char) + 13 >= lower.length
+        ? lower[(lower.indexOf(char) + 13) % lower.length]
+        : lower[lower.indexOf(char) + 13];
+    }
+    if (upper.includes(char)) {
+      return upper.indexOf(char) + 13 >= upper.length
+        ? upper[(upper.indexOf(char) + 13) % upper.length]
+        : upper[upper.indexOf(char) + 13];
+    }
+    return char;
+  });
+
+  return encoded.join('');
 }
 
 /**
